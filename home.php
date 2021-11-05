@@ -61,7 +61,7 @@
                   <p class="card-header text-center" > <?php echo $_SESSION['username']; ?>Answer the following questions<i class="fas fa-thumbs-up"></i>	 </p>
                </div>
                <br>
-         <form method="POST" action="checked.php">
+               <form method="POST" action="home.php">
         <?php
 	
             $file = new SplFileObject("questions.txt");
@@ -75,10 +75,11 @@
             }
             $file = null;
         ?>
-        <input type="submit" value="click" name="submit">
-        <?php 
-         display();
-        ?>
+        <input type="submit" value="SAVE" name="submit" class="btn btn-success d-block m-auto">
+        </form>
+        <br>
+        <form action="checked.php">
+        <input type="submit" value="Next" name="submit" class="btn btn-success d-block m-auto">
         </form>
         
   
@@ -141,5 +142,5 @@
     {
     display();
     } 
-    ?>
+    ?> 
 </html>
