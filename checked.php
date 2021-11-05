@@ -41,6 +41,7 @@ session_start();
 
    </head>
    <body>
+   
      <div class="container text-center" >
      	<br><br>
     	<h1 class="text-center text-success text-uppercase animateuse" > Results</h1>
@@ -52,75 +53,16 @@ session_start();
       	</tr>
       	<tr>
 		      	<td>
-		      		Questions Attempted
+		      		Thank you for attempting the Test
 		      	</td>
 
-	         <?php
-         $counter = 0;
-         $Resultans = 0;
-            if(isset($_POST['submit'])){
-            if(!empty($_POST['quizcheck'])) {
-            // Counting number of checked checkboxes.
-            $checked_count = count($_POST['quizcheck']);
-            // print_r($_POST);
-            ?>
-
-        	<td>
-            <?php
-            echo "Out of 5, You have attempt ".$checked_count." option."; ?>
-            </td>
-        
-          	
-            <?php
-            // Loop to store and display values of individual checked checkbox.
-            $selected = $_POST['quizcheck'];
-            
-            $q1= " select answer from questions ";
-            $ansresults = mysqli_query($con,$q1);
-            $i = 1;
-            while($rows = mysqli_fetch_array($ansresults)) {
-              // print_r($rows);
-            	$flag = $rows['answer'] == $selected[$i];
-            	
-            			if($flag){
-            				// echo "correct ans is ".$rows['ans']."<br>";				
-            				$counter++;
-            				$Resultans++;
-            				// echo "Well Done! your ". $counter ." answer is correct <br><br>";
-            			}else{
-            				$counter++;
-            				// echo "Sorry! your ". $counter ." answer is innncorrect <br><br>";
-            			}					
-            		$i++;		
-            	}
-            	?>
-            	
-    		
+	        
     		<tr>
     			<td>
-    				Your Total score
+    				Your Total score will updated soon
     			</td>
-    			<td colspan="2">
-	    	<?php 
-	            echo " Your score is ". $Resultans.".";
-	            }
-	            else{
-	            echo "<b>Please Select Atleast One Option.</b>";
-	            }
-	            } 
-	          ?>
-	          </td>
+    			 </td>
             </tr>
-
-            <?php 
-
-            $name = $_SESSION['username'];
-            $finalresult = " insert into usersession(name,u_q_id, u_a_id) values ('$name','5','$Resultans') ";
-            $queryresult= mysqli_query($con,$finalresult); 
-            // if($queryresult){
-            // 	echo "successssss";
-            // }
-            ?>
 
 
       </table>
@@ -141,59 +83,3 @@ session_start();
 
 
 
-<!-- 
-
-<?php
-
-session_start();
-if(!isset($_SESSION['username'])){
-header('location:login.php');
-}
-
- $con = mysqli_connect('localhost','root');
-    if($con){
-      echo"connection";
-    }
-   
-    mysqli_select_db($con,'quizdatabases');
-
-
-    if(isset($_POST['submit'])){
-
-      if(!empty($_POST['quizcheck'])){
-
-        $count = count($_POST['quizcheck']);
-          echo "you count is". $count;
-
-          $selected = $_POST['quizcheck'];
-          print_r($selected);
-
-          $q = " select * from question ";
-          $query = mysqli_query($con,$q);
-
-          $result = 0;
-          $i = 1;
-          while ( $rows = mysqli_fetch_array($query)) {
-            
-              print_r($rows['ans_id']);
-
-              $stored  = $rows['ans_id'] == $selected[$i];
-
-              if($stored){
-
-                $result++;
-
-              }
-
-              $i++;
-
-          }
-
-          echo $result;
-
-      }
-
-    }
-
-
-?> -->

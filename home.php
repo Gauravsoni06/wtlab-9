@@ -42,23 +42,11 @@
    </head>
    <body>
 
-      <?php 
-
-      $page1 = $_GET["page"];
-
-      if($page1=="" ||  $page1==1){
-         $page1 = 0;
-      } else{
-         $page1 = (($page1 * 1)-1);
-
-      }
-
-      ?>
+ 
 
       <div>
        <!--   <h1 class="text-center text-white font-weight-bold text-uppercase bg-dark" >  Complete Quiz Website using PHP and MYSQL using Session</h1><br>
       <div class="container "><br> -->
-         <h1 class="text-center text-white font-weight-bold text-uppercase bg-dark" >  Complete Quiz Website using PHP and MYSQL using Session </h1><br>
       <div class="container "><br>
          <div class="container">
          
@@ -70,52 +58,33 @@
             <br>
             <div class="col-lg-8 d-block m-auto bg-light quizsetting ">
                <div class="card">
-                  <p class="card-header text-center" > <?php echo $_SESSION['username']; ?>, you have to select only one out of 4. Best of Luck <i class="fas fa-thumbs-up"></i>	 </p>
+                  <p class="card-header text-center" > <?php echo $_SESSION['username']; ?>Answer the following questions<i class="fas fa-thumbs-up"></i>	 </p>
                </div>
                <br>
-               <form action="checked.php" method="post">
-                  <?php
-                     for($i=1;$i<6;$i++){
-                     $l = 1;
+         <form method="POST" action="checked.php">
+        <?php
+	
+            $file = new SplFileObject("questions.txt");
+            $counter=0;
+            while(!$file->eof())
+            {
+                $counter++;
+                echo $counter." ";
+                echo $file->fgets()."<br/>";
+                echo "<input type='text' name='ans$counter' id='' value=''/><br/>";
+            }
+            $file = null;
+        ?>
+        <input type="submit" value="click" name="submit">
+        <?php 
+         display();
+        ?>
+        </form>
+        
+  
+     
+   
                   
-                     $ansid = $i;
-
-                     $sql1 = "SELECT * FROM `questions` WHERE `q_id` = $i ";
-                     	$result1 = mysqli_query($con, $sql1);
-                     		if (mysqli_num_rows($result1) > 0) {
-                     						while($row1 = mysqli_fetch_assoc($result1)) {
-                  ?>				
-                  <br>
-                  <div class="card">
-                     <br>
-                     <p class="card-header">  <?php echo $i ." : ". $row1['question']; ?> </p>
-                    
-                     <?php
-                        $sql = "SELECT * FROM `answers` WHERE `q_id` = $i limit $page1, 1";
-                        	$result = mysqli_query($con, $sql);
-                        		if (mysqli_num_rows($result) > 0) {
-                        						while($row = mysqli_fetch_assoc($result)) {
-                        	?>	
-                           
-                     <div class="card-block">
-                        <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo $ansid; ?>" value="<?php echo $row['a_id']; ?>"> <?php echo $row['answer']; ?> <br>
-                        <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo $ansid; ?>" value="<?php echo $row['a_id']; ?>"> <?php echo $row['answer1']; ?> <br>
-                        <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo $ansid; ?>" value="<?php echo $row['a_id']; ?>"> <?php echo $row['answer2']; ?> <br>
-                        <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo $ansid; ?>" value="<?php echo $row['a_id']; ?>"> <?php echo $row['answer3']; ?> 
-                        <br>
-                     </div>
-                     <?php
-                        
-                        } } 
-                        $ansid = $ansid + $l;
-                        } }}
-                        
-                     ?>
-                  </div>
-
-                  <br>
-                  <input type="submit" name="submit" Value="Submit" class="btn btn-success m-auto d-block" /> <br>
-               </form>
                <p id="letc"></p>
             </div>
             <br>
@@ -152,4 +121,25 @@
 
 
    </body>
+   <?php
+    function display()
+    {
+        $fp = fopen('student_ans.txt', 'a');
+        $i=1;
+        // $file = fopen("student_ans.txt","a");
+        // $filename="student_ans.txt";
+        while($i!=$GLOBALS['counter']+1){
+            $line="Answer $i - ".$_POST["ans$i"]."\n";
+            // file_put_contents($filename, $line);
+            fwrite($fp, $line);
+            $i++;
+        }
+        // fclose($file);
+        fclose($fp);
+    }
+    if(isset($_POST['submit']))
+    {
+    display();
+    } 
+    ?>
 </html>
