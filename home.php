@@ -38,6 +38,63 @@
          80% {  color: black },
          100% {  color: brown }
          }
+         <style>
+        input[type=button], input[type=submit], input[type=reset] {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        }        
+        
+
+body {
+  background-color: #d5e1df;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input {
+    background: transparent;
+    width: 200px;
+    padding: 1em;
+    margin-bottom: 2em;
+    
+    
+    
+  }
+  
+  
+
+
+::placeholder {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+
+
+
+a,
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+
+
+
+
+
+
+        </style>
+
       </style>
    </head>
    <body>
@@ -58,7 +115,7 @@
             <br>
             <div class="col-lg-8 d-block m-auto bg-light quizsetting ">
                <div class="card">
-                  <p class="card-header text-center" > <?php echo $_SESSION['username']; ?>Answer the following questions<i class="fas fa-thumbs-up"></i>	 </p>
+                  <p class="card-header text-center" > <?php echo $_SESSION['username']; ?> <br>Answer the following questions<i class="fas fa-thumbs-up"></i>	 </p>
                </div>
                <br>
                <form method="POST" action="home.php">
@@ -69,9 +126,11 @@
             while(!$file->eof())
             {
                 $counter++;
+                echo "<center><div class='form-group'>";
                 echo $counter." ";
                 echo $file->fgets()."<br/>";
                 echo "<input type='text' name='ans$counter' id='' value=''/><br/>";
+                echo "</div></center>";
             }
             $file = null;
         ?>

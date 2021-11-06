@@ -37,6 +37,53 @@ session_start();
 			80% {  color: black },
 			100% {  color: brown }
 		}
+    input[type=button], input[type=submit], input[type=reset] {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        }        
+        
+
+body {
+  background-color: #d5e1df;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input {
+    background: transparent;
+    width: 200px;
+    padding: 1em;
+    margin-bottom: 2em;
+    
+    
+    
+  }
+  
+  
+
+
+::placeholder {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+
+
+
+a,
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
 </style>
 
    </head>

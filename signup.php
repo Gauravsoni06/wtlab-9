@@ -1,4 +1,3 @@
-
 <?php 
 
 	$con = mysqli_connect('localhost','root');
@@ -9,23 +8,17 @@
 	mysqli_select_db($con,'test');
 
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Home</title>
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	 <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
-	 <style>
-		 <style>
+    <style>
+        <style>
         input[type=button], input[type=submit], input[type=reset] {
         background-color: #4CAF50;
         border: none;
@@ -83,25 +76,16 @@ button:focus {
 
         </style>
 
-	 </style>
-<!-- 
-	 font-family: 'Montserrat', sans-serif; 
-	font-family: 'Open Sans', sans-serif;
-	-->
-
+    </style>
 </head>
 <body>
-
-	<div class="container">
+<div class="container">
 		<h1 class="text-center"> Welcome to online test </h1><br>
-
-		<div class="row" >
-		
-			<div class="col-lg-11">
+<div class="col-lg-11">
 				<div class="card">
-					<h4 class="card-header text-center"> Login Form </h4>
+					<h4 class="card-header text-center"> SignUp Form </h4>
 					<br>
-					<form action="login.php" method="post">
+					<form action="registration.php" method="post">
 						<div class="form-group">
 							<label for="user "> Username: </label>
 							<input type="text" name="user" id="user" class="form-control">
@@ -110,19 +94,13 @@ button:focus {
 							<label for="pass "> Password: </label>
 							<input type="password" name="pass" id="pass" class="form-control">
 						</div>
-						<button class="btn btn-success d-block m-auto" type="submit"> Login </button>
-						<a href="signup.php">Click here for new user</a>
+						<button class="btn btn-success d-block m-auto" type="submit"> Register </button>
+						<div class="duplicate"> </div>
 					</form>
-				
+
 				</div>
 			</div>
-
-		
-			
-
-		</div>
-
-	</div>
-
+				</div>
+			</div>
 </body>
 </html>
